@@ -10,3 +10,6 @@
 [submodule "komposvision_final"]
 	path = komposvision_final
 	url = https://github.com/KadekPindra/komposvision_final
+[submodule "KomposVision_online_mvp"]
+	path = KomposVision_online_mvp
+	url = https://github.com/MantaYuana/komposvision_online_mvp
