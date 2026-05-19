@@ -1,20 +1,21 @@
 <div align="center">
 
-# ⚖️ CLARA
-### Contract & Legal AI Reasoning Assistant
-![Software Engineering](Clara.gif)
+# 🌿 KomposVision
 
-**🏆 2nd Place — Hackvidia at Arkavidia 10.0**
+### Smart Composting & Waste Classification Assistant
 
-[![Node.js](https://img.shields.io/badge/Node.js-22.x-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.7-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
-[![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)](https://react.dev/)
-[![Neo4j](https://img.shields.io/badge/Neo4j-5.18-008CC1?logo=neo4j&logoColor=white)](https://neo4j.com/)
-[![Redis](https://img.shields.io/badge/Redis-7-DC382D?logo=redis&logoColor=white)](https://redis.io/)
-[![Gemini](https://img.shields.io/badge/Google%20Gemini-2.5%20Flash-4285F4?logo=google&logoColor=white)](https://ai.google.dev/)
+![KomposVision](KomposVision.gif)
+
+[![Expo](https://img.shields.io/badge/Expo-SDK%2054-000020?logo=expo&logoColor=white)](https://expo.dev/)
+[![React Native](https://img.shields.io/badge/React%20Native-0.81-61DAFB?logo=react&logoColor=black)](https://reactnative.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![TensorFlow Lite](https://img.shields.io/badge/TensorFlow%20Lite-On--device-FF6F00?logo=tensorflow&logoColor=white)](https://www.tensorflow.org/lite)
+[![FastAPI](https://img.shields.io/badge/FastAPI-Optional-009688?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
-CLARA is an AI-powered legal assistant purpose-built for Indonesian MSMEs (Micro, Small & Medium Enterprises). It helps business owners understand contracts and employment law, draft legal documents, and detect risky clauses — all without needing a lawyer on retainer.
+KomposVision is an AI-assisted composting app that helps users sort waste correctly, track compost progress, and learn sustainable practices. The final mobile app lives in `komposvision_final/` and runs fully on-device with optional backend integrations.
+
+**🏆 1st Place — IYREF 2026 (Integrated Youth Renewable Energy Festival)**
 
 [Features](#-features) · [Architecture](#-architecture) · [Quick Start](#-quick-start) · [API Docs](#-api-documentation) · [Contributing](#-contributing)
 
@@ -42,49 +43,53 @@ CLARA is an AI-powered legal assistant purpose-built for Indonesian MSMEs (Micro
 
 ## 🎯 About the Project
 
-Indonesian MSMEs frequently sign contracts they don't fully understand, often without access to legal counsel. CLARA bridges this gap by combining:
+KomposVision empowers households and communities to compost smarter by combining:
 
-- **Retrieval-Augmented Generation (RAG)** over a curated Indonesian legal knowledge base
-- **Self-Consistency Reasoning** with Jensen-Shannon entropy confidence scoring
-- **Knowledge Graph** (Neo4j) for symbolic legal reasoning via Cypher traversal
-- **AI-powered document drafting** for MoU, LoI, and PKS document types
-- **OCR + guardrail** pipeline that automatically flags illegal contract clauses
-
-> CLARA won **2nd Place** at the **Hackvidia competition, Arkavidia 10.0** — a national-level IT competition hosted by HMIF ITB.
+- **On-device computer vision** to classify organic vs inorganic waste
+- **Contaminant detection** to flag items that should not enter compost
+- **Local progress tracking** for compost batches and materials
+- **Guided learning** via a materials guide and composting tips
+- **Optional online services** for chat assistance and shared progress
 
 ---
 
 ## ✨ Features
 
-### 📄 Contract Review & Risk Analysis
-Upload any contract (PDF or image) and get an instant, structured legal risk report:
-- Clause-by-clause explanation in plain language
-- Severity-tagged violations: `CRITICAL`, `WARNING`, `INFO`
-- Automatic detection of illegal patterns (forced seizure, excessive penalties, illegal wage cuts, etc.)
-- Statutory citations (Indonesian Law, Government Regulations, Ministry Decrees)
+### 📷 Live Scan & Waste Classification
 
-### 🔍 Legal Q&A (RAG Pipeline)
-Ask questions about Indonesian employment law and contract regulation:
-- **Hybrid Retrieval**: Dense vector search + BM25 full-text search + symbolic Neo4j graph traversal, fused via Reciprocal Rank Fusion (RRF)
-- **Self-Consistency Loop**: Generates multiple reasoning paths, measures divergence (Jensen-Shannon entropy), and maps to a `green / yellow / red` confidence level
-- Answers always cite specific articles and laws (`Pasal N UU No. X Tahun YYYY`)
+Point your camera at waste items and get instant results:
 
-### ✍️ AI Document Drafter
-Conversational smart drafter for legal documents:
-- Supports **MoU** (Memorandum of Understanding), **LoI** (Letter of Intent), and **PKS** (Cooperation Agreement)
-- Multi-turn dialogue: CLARA asks clarifying questions until all required fields are gathered
-- Detects legally binding terms and warns before generating
-- Outputs a structured Markdown document + downloadable **PDF**
-- Post-generation guardrail scan on the produced draft
+- Organic vs inorganic classification
+- Segmentation-aware overlays for clearer feedback
+- Fast on-device inference via TensorFlow Lite
 
-### 🔐 Authentication & Session Management
-- Google OAuth 2.0 login
-- JWT-based stateless session
-- Per-user chat history persisted in Neo4j
+### 🧪 Contamination Detection
 
-### 📊 User Dashboard
-- Aggregated view of all uploaded contract reviews and drafting projects
-- File management with source tracing per conversation
+Detect common compost contaminants early:
+
+- Flags plastics, metals, and non-compostables
+- Helps keep compost clean and odor-free
+
+### 📈 Compost Progress Tracking
+
+Track your compost batch over time:
+
+- Record materials added and daily progress
+- View composition summaries and history
+
+### 📚 Materials Guide
+
+Practical tips on what to compost and how:
+
+- Do/Don’t recommendations
+- Best practices and troubleshooting
+
+### 🗂️ Offline-first Data
+
+Works without a network connection:
+
+- Local storage with WatermelonDB
+- Fast retrieval for logs and batch history
 
 ---
 
@@ -92,130 +97,88 @@ Conversational smart drafter for legal documents:
 
 ```
 ┌─────────────────────────────────────────────────────────────────────┐
-│                        React (Vite) Frontend                        │
-│  Pages: Landing · Login · Chat · Files · Home                       │
+│                   Expo React Native App (Final)                     │
+│  Tabs: Scan · Progress · Materials · Chat                           │
 └──────────────────────────────┬──────────────────────────────────────┘
-                               │ REST / JWT
+                               │ On-device inference
 ┌──────────────────────────────▼──────────────────────────────────────┐
-│                      Express.js Backend (Node)                      │
-│                                                                     │
-│  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────────────┐   │
-│  │  /auth   │  │/contract │  │  /query  │  │    /drafter      │   │
-│  └──────────┘  └────┬─────┘  └────┬─────┘  └────────┬─────────┘   │
-│                     │              │                  │             │
-│  ┌──────────────────▼──────────────▼──────────────────▼──────────┐ │
-│  │                    Service Layer                               │ │
-│  │  OCR Service  →  Guardrail  →  Hybrid Retrieval  →  Reasoning │ │
-│  └───────────────────────────────────────────────────────────────┘ │
-│                                                                     │
-│  ┌─────────────────┐   ┌─────────────┐   ┌──────────────────────┐  │
-│  │  BullMQ Worker  │   │  Neo4j DB   │   │  Google Gemini API   │  │
-│  │  (async OCR)    │   │  (KG + RAG) │   │  (LLM + Embeddings)  │  │
-│  └────────┬────────┘   └─────────────┘   └──────────────────────┘  │
-│           │ Redis Queue                                             │
-└───────────▼─────────────────────────────────────────────────────────┘
-            │
-    ┌───────▼────────┐
-    │  Google Cloud  │
-    │  Vision (OCR)  │
-    └────────────────┘
+│                 Vision Pipeline (TensorFlow Lite)                   │
+│  - Organic/Inorganic Classifier                                     │
+│  - Segmentation (CN)                                                │
+│  - Contaminant Detection                                            │
+└──────────────────────────────┬──────────────────────────────────────┘
+                               │ Results + metadata
+┌──────────────────────────────▼──────────────────────────────────────┐
+│                 Local Storage (WatermelonDB)                        │
+│  Batches · Materials · Scans · Profiles                             │
+└──────────────────────────────┬──────────────────────────────────────┘
+                               │ Optional sync / AI guidance
+┌──────────────────────────────▼──────────────────────────────────────┐
+│          KomposVision Online Backend (FastAPI, optional)            │
+│  /scan · /chat · /progress · /materials                             │
+└──────────────────────────────┬──────────────────────────────────────┘
+                               │
+                ┌──────────────▼───────────────┐
+                │  Supabase + Gemini API       │
+                └──────────────────────────────┘
 ```
 
-### RAG & Reasoning Pipeline
+### Vision Pipeline
 
 ```
-User Query
+Camera Frame
     │
     ▼
-┌────────────────────────────────────────┐
-│           Hybrid Retrieval             │
-│  ┌──────────┐ ┌────────┐ ┌──────────┐ │
-│  │  Dense   │ │  BM25  │ │Symbolic  │ │
-│  │  (768d   │ │ (full  │ │(Neo4j    │ │
-│  │ vector)  │ │  text) │ │ Cypher)  │ │
-│  └──────────┘ └────────┘ └──────────┘ │
-│         Reciprocal Rank Fusion         │
-└──────────────────┬─────────────────────┘
+┌───────────────────────────────────────────┐
+│ Preprocess (resize + normalize)           │
+└──────────────────┬────────────────────────┘
                    │
                    ▼
-         ┌─────────────────┐
-         │   Reasoning     │
-         │  Service (N=3   │
-         │   paths)        │
-         │                 │
-         │  JS Entropy  →  │
-         │  Confidence     │
-         │  green/yellow/  │
-         │  red            │
-         └────────┬────────┘
-                  │
-                  ▼
-           Final Answer
-          + Citations
-          + Confidence
+┌───────────────────────────────────────────┐
+│ On-device Models (TFLite)                 │
+│  - Organic/Inorganic Classifier           │
+│  - Segmentation (CN ratio estimation)     │
+│  - Contaminant Detector (YOLO)            │
+└──────────────────┬────────────────────────┘
+                   │
+                   ▼
+┌───────────────────────────────────────────┐
+│ Compost Advisor                            │
+│  - Score + recommendations                 │
+└──────────────────┬────────────────────────┘
+                   │
+                   ▼
+              UI Feedback
 ```
 
 ---
 
 ## 🛠️ Tech Stack
 
-| Layer | Technology |
-|---|---|
-| **Frontend** | React 19, Vite 7, Tailwind CSS 4, Framer Motion, React Router DOM 7 |
-| **Backend** | Node.js 22, Express.js 5, TypeScript 5.7 |
-| **AI / LLM** | Google Gemini 2.5 Flash, Google Gemini Embeddings (`gemini-embedding-001`, 768d) |
-| **OCR** | Google Cloud Vision API |
-| **Database** | Neo4j 5.18 Community (APOC + Graph Data Science plugins) |
-| **Queue** | BullMQ + Redis 7 |
-| **Auth** | Passport.js, Google OAuth 2.0, JSON Web Tokens |
-| **PDF Generation** | pdf-lib |
-| **API Docs** | Swagger UI (OpenAPI 3.0) |
-| **Containerization** | Docker + Docker Compose |
-| **Deployment** | Vercel (Frontend), Docker (Backend) |
+| Layer                  | Technology                                                                |
+| ---------------------- | ------------------------------------------------------------------------- |
+| **Mobile**             | Expo SDK 54, React Native 0.81, React 19, TypeScript 5.9                  |
+| **UI**                 | NativeWind (Tailwind), Expo Router, React Navigation                      |
+| **Vision**             | TensorFlow Lite, `react-native-fast-tflite`, `react-native-vision-camera` |
+| **Storage**            | WatermelonDB                                                              |
+| **AI**                 | YOLOv11m, YOLOv11m-seg, Gemini API                                        |
+| **Backend (optional)** | FastAPI + Supabase                                                        |
 
 ---
 
 ## 📂 Project Structure
 
 ```
-CLARA_AI/
-├── docker-compose.yml          # Orchestrates Neo4j, Redis, and Backend
-├── backend/
-│   ├── src/
-│   │   ├── index.ts            # Express app entry point
-│   │   ├── config/             # env, Neo4j, Passport, Redis, Swagger
-│   │   ├── middleware/         # JWT auth guard
-│   │   ├── routes/             # auth, chat, contract, document, drafter, query
-│   │   ├── services/
-│   │   │   ├── chat/           # Chat history persistence (Neo4j)
-│   │   │   ├── dashboard/      # User project aggregation
-│   │   │   ├── drafter/        # Multi-turn document drafting + PDF export
-│   │   │   ├── embedding/      # Gemini embedding service
-│   │   │   ├── guardrail/      # Statutory limit & clause violation checks
-│   │   │   ├── ocr/            # Google Cloud Vision OCR
-│   │   │   ├── reasoning/      # Self-consistency loop, JS-entropy, citations
-│   │   │   ├── retrieval/      # Dense, BM25, Symbolic, Hybrid (RRF) retrieval
-│   │   │   └── user/           # User creation & lookup
-│   │   ├── workers/
-│   │   │   └── analysisWorker.ts  # BullMQ worker for async OCR jobs
-│   │   ├── queues/
-│   │   │   └── analysisQueue.ts   # BullMQ queue definition
-│   │   ├── scripts/            # DB init, PDF seeding, knowledge seeding
-│   │   └── utils/              # Response helpers
-│   ├── base_knowledge/         # Curated Indonesian legal PDFs for RAG seeding
-│   ├── Dockerfile
-│   ├── package.json
-│   └── tsconfig.json
-└── frontend/
-    ├── src/
-    │   ├── pages/              # Landing, Login, Home, ChatDetail, Files
-    │   ├── components/         # ChatBubble, ChatPanel, SourcesPanel, StudioPanel…
-    │   ├── hooks/              # useAuth, useChat, useProjects, useSources…
-    │   ├── Services/           # Axios service wrappers per domain
-    │   └── lib/                # Configured Axios instance
-    ├── public/
-    ├── vite.config.js
-    └── package.json
+KomposVision/
+├── komposvision_final/               # Final mobile app (Expo)
+│   ├── app/                          # Screens & routes (Expo Router)
+│   ├── assets/                       # Images + TFLite models
+│   ├── components/                   # Reusable UI components
+│   ├── database/                     # WatermelonDB schema & models
+│   ├── services/                     # Vision + composting services
+│   └── utils/                        # Helpers & advisors
+├── KomposVision_Online_Backend/       # Optional FastAPI backend
+└── komposvision-enterprise-frontend/  # Optional web dashboard
 ```
 
 ---
@@ -224,189 +187,95 @@ CLARA_AI/
 
 ### Prerequisites
 
-- [Node.js](https://nodejs.org/) v20+
-- [Docker](https://docs.docker.com/get-docker/) & Docker Compose
-- A [Google AI Studio](https://aistudio.google.com/) API key (Gemini)
-- A [Google Cloud](https://console.cloud.google.com/) project with **Cloud Vision API** enabled and a service-account JSON key
-- A [Google OAuth 2.0](https://console.cloud.google.com/apis/credentials) client (Web application)
+- [Node.js](https://nodejs.org/) v18+
+- [Expo CLI](https://docs.expo.dev/get-started/installation/)
+- Android Studio or Xcode (for native builds)
 
 ---
 
-### 1. Clone the Repository
+### 1. Install Dependencies
 
 ```bash
-git clone https://github.com/your-org/clara-ai.git
-cd clara-ai
-```
-
-### 2. Configure Environment Variables
-
-```bash
-cp backend/.env.example backend/.env
-```
-
-Fill in all required values in `backend/.env` (see [Environment Variables](#-environment-variables)).
-
-Place your Google Cloud Vision service account JSON at:
-
-```
-backend/clara-google-cloud-vision.json
-```
-
-### 3. Start Infrastructure (Neo4j + Redis)
-
-```bash
-docker compose up neo4j redis -d
-```
-
-Wait for both services to be healthy:
-
-```bash
-docker compose ps   # both should show "(healthy)"
-```
-
-### 4. Install Backend Dependencies & Initialize the Database
-
-```bash
-cd backend
+cd komposvision_final
 npm install
-npm run init-schema   # creates Neo4j constraints and indexes
-npm run seed:pdf      # seeds base Indonesian legal knowledge into Neo4j
 ```
 
-### 5. Start the Backend
+### 2. Run the App
 
 ```bash
-npm run dev           # runs on http://localhost:3001
+npm run start
 ```
 
-### 6. Start the Frontend
+For camera + TFLite modules, use a development build:
 
 ```bash
-cd ../frontend
-npm install
-npm run dev           # runs on http://localhost:5173
+npm run android
 ```
-
-Open [http://localhost:5173](http://localhost:5173) in your browser.
-
----
-
-### Docker (Full Stack)
-
-To run all services including the backend in Docker:
-
-```bash
-docker compose up --build
-```
-
-| Service | URL |
-|---|---|
-| Frontend (dev) | http://localhost:5173 |
-| Backend API | http://localhost:3001 |
-| API Docs (Swagger) | http://localhost:3001/api/docs |
-| Neo4j Browser | http://localhost:7474 |
 
 ---
 
 ## 🔧 Environment Variables
 
-Create `backend/.env` based on the table below:
+The mobile app runs fully offline and does **not** require environment variables.
 
-| Variable | Description | Example |
-|---|---|---|
-| `PORT` | Backend port | `3001` |
-| `NODE_ENV` | Environment | `development` |
-| `NEO4J_URI` | Neo4j Bolt URI | `bolt://localhost:7687` |
-| `NEO4J_USER` | Neo4j username | `neo4j` |
-| `NEO4J_PASSWORD` | Neo4j password | `clara_password` |
-| `GOOGLE_AI_API_KEY` | Gemini API key | `AIza...` |
-| `GEMINI_MODEL` | Gemini model name | `gemini-2.5-flash` |
-| `EMBEDDING_MODEL` | Embedding model | `gemini-embedding-001` |
-| `EMBEDDING_DIMENSION` | Embedding vector size | `768` |
-| `GOOGLE_APPLICATION_CREDENTIALS` | Path to GCV service account JSON | `clara-google-cloud-vision.json` |
-| `JWT_SECRET` | Secret for signing JWTs | `<long random string>` |
-| `OAUTH_GOOGLE_CLIENT_ID` | Google OAuth client ID | `123...apps.googleusercontent.com` |
-| `OAUTH_GOOGLE_CLIENT_SECRET` | Google OAuth client secret | `GOCSPX-...` |
-| `REASONING_PATHS` | Number of self-consistency paths | `3` |
-| `TEMPERATURE_LOW` | Temperature for conservative reasoning | `0.1` |
-| `TEMPERATURE_HIGH` | Temperature for exploratory reasoning | `0.7` |
-| `MAX_CONTEXT_TOKENS` | Max tokens in Gemini context | `8192` |
-| `TOP_K_DENSE` | Top-K for dense retrieval | `5` |
-| `TOP_K_BM25` | Top-K for BM25 retrieval | `5` |
-| `TOP_K_SYMBOLIC` | Top-K for symbolic/graph retrieval | `5` |
-| `HYBRID_DENSE_WEIGHT` | RRF weight for dense leg | `0.5` |
-| `HYBRID_BM25_WEIGHT` | RRF weight for BM25 leg | `0.3` |
-| `HYBRID_SYMBOLIC_WEIGHT` | RRF weight for symbolic leg | `0.2` |
-| `MAX_FILE_SIZE_MB` | Maximum upload file size | `10` |
-| `UPLOAD_DIR` | Local upload directory | `./uploads` |
-| `VITE_API_URL` | Frontend → Backend base URL | `http://localhost:3001` |
+If you use the optional backend, create `KomposVision_Online_Backend/backend/.env` with:
+
+| Variable         | Description               |
+| ---------------- | ------------------------- |
+| `SUPABASE_URL`   | Supabase project URL      |
+| `SUPABASE_KEY`   | Supabase service role key |
+| `GEMINI_API_KEY` | Gemini API key            |
 
 ---
 
 ## 📚 API Documentation
 
-After starting the backend, interactive Swagger docs are available at:
+When the optional backend is running, FastAPI docs are available at:
 
 ```
-http://localhost:3001/api/docs
+http://localhost:8000/docs
 ```
 
 ### Key Endpoints
 
-| Method | Endpoint | Auth | Description |
-|---|---|---|---|
-| `GET` | `/health` | — | Service health check |
-| `GET` | `/api/v1/auth/google` | — | Initiate Google OAuth flow |
-| `GET` | `/api/v1/auth/google/callback` | — | OAuth callback, returns JWT |
-| `POST` | `/api/v1/document/analyze` | Optional | Upload contract PDF/image for async OCR analysis (returns `202`) |
-| `GET` | `/api/v1/document/:id/status` | Optional | Poll OCR job status |
-| `POST` | `/api/v1/contract/review` | ✅ JWT | Review an already-analyzed contract; runs guardrail + reasoning |
-| `POST` | `/api/v1/query` | ✅ JWT | Ask a legal question via hybrid RAG + self-consistency |
-| `POST` | `/api/v1/drafter/chat` | ✅ JWT | Multi-turn document drafting conversation |
-| `GET` | `/api/v1/chat/sessions` | ✅ JWT | List user's chat sessions |
-| `GET` | `/api/v1/chat/sessions/:id` | ✅ JWT | Get message history for a session |
+| Method | Endpoint     | Description              |
+| ------ | ------------ | ------------------------ |
+| `GET`  | `/health`    | Service health check     |
+| `POST` | `/scan`      | Analyze a waste image    |
+| `POST` | `/chat`      | Composting Q&A assistant |
+| `GET`  | `/progress`  | Compost progress summary |
+| `GET`  | `/materials` | Materials guide          |
 
 ---
 
 ## 🧪 Running Tests
 
+No automated tests are configured yet. Linting is available via:
+
 ```bash
-cd backend
-npm test
+cd komposvision_final
+npm run lint
 ```
-
-The test suite uses **Jest + ts-jest**. Test files follow the `*.test.ts` convention.
-
-Notable test files:
-- `src/services/guardrail/guardrailService.test.ts`
-- `src/services/retrieval/hybridRetrieval.test.ts`
 
 ---
 
 ## 🚢 Deployment
 
-### Backend
+### Mobile
 
-The backend is fully containerized. For production, deploy via Docker Compose on any VPS or cloud VM:
-
-```bash
-docker compose up --build -d
-```
-
-Make sure `NODE_ENV=production` and update `NEO4J_URI` / `REDIS_URL` to point to your managed services.
-
-### Frontend
-
-The frontend is configured for **Vercel** deployment (`vercel.json` is included). All routes are rewired to `index.html` for SPA routing.
+Use EAS to create store-ready builds:
 
 ```bash
-cd frontend
-npm run build       # outputs to dist/
-vercel --prod       # or connect your GitHub repo in the Vercel dashboard
+cd komposvision_final
+eas build -p android
 ```
 
-Set `VITE_API_URL` in Vercel's Environment Variables to point to your backend URL.
+### Backend (optional)
+
+```bash
+cd KomposVision_Online_Backend
+uvicorn backend.main:app --reload
+```
 
 ---
 
@@ -417,35 +286,31 @@ We welcome contributions! Please follow these steps:
 ### 1. Fork & Branch
 
 ```bash
-git fork https://github.com/your-org/clara-ai.git
+git fork https://github.com/your-org/komposvision.git
 git checkout -b feat/your-feature-name
 ```
 
 ### 2. Development Workflow
 
 ```bash
-# Backend
-cd backend && npm run dev
-
-# Frontend (separate terminal)
-cd frontend && npm run dev
+cd komposvision_final
+npm run start
 ```
 
 ### 3. Code Style
 
-- **Backend**: TypeScript strict mode. Follow existing service patterns (service class → route handler separation).
-- **Frontend**: React functional components with hooks. Keep service calls in `src/Services/`.
-- All new backend endpoints must include a Swagger JSDoc comment block.
+- Keep components small and focused.
+- Prefer hooks for stateful logic.
+- Match existing file structure in `components/`, `services/`, and `database/`.
 
 ### 4. Commit Convention
 
 Follow [Conventional Commits](https://www.conventionalcommits.org/):
 
 ```
-feat: add penalty clause detection to guardrail
-fix: resolve RRF weight normalization bug
-docs: update retrieval architecture section
-refactor: extract confidence label mapping to util
+feat: add compost batch reminders
+fix: handle empty scan results
+docs: update vision pipeline diagram
 ```
 
 ### 5. Open a Pull Request
@@ -454,24 +319,17 @@ refactor: extract confidence label mapping to util
 - Include a short description of _what_ and _why_
 - Reference any related issues
 
-### 6. Reporting Issues
-
-Use [GitHub Issues](https://github.com/your-org/clara-ai/issues). Include:
-- Steps to reproduce
-- Expected vs actual behavior
-- Relevant logs or screenshots
-
 ---
 
 ## 👥 Team
 
-CLARA was built with ❤️ by a team of 4 engineers competing at **Arkavidia 10.0 Hackvidia**:
+KomposVision was built with ❤️ by:
 
-| Name | Role |
-|---|---|
-| [Manta Yuana](https://github.com/rammm2005) | Backend & Project Manager |
+| Name                           | Role                  |
+| ------------------------------ | --------------------- |
+| [Manta Yuana](https://github.com/mantayuana) | Backend & Project Manager |
 | [Kadek Pindra](https://github.com/KadekPindra) | Frontend & Integration |
-| [Rama Dita](https://github.com/rammm2005) | Fullstack & Data Engineering |
+| [Nova Andini](https://github.com/novaandini) | AI & Data Engineering |
 | [Dewa Surya](https://github.com/arisuryaa) | Frontend & UI/UX Designer |
 
 ---
@@ -484,6 +342,6 @@ This project is licensed under the **MIT License**. See [LICENSE](LICENSE) for d
 
 <div align="center">
 
-Made for Indonesian MSMEs · Built at Arkavidia 10.0 Hackvidia · 🏆 2nd Place
+Built for sustainable communities · KomposVision
 
 </div>
