@@ -1,0 +1,12 @@
+[submodule "komposvision_online_mvp"]
+	path = komposvision_online_mvp
+	url = https://github.com/MantaYuana/komposvision_online_mvp
+[submodule "komposvision-enterprise-frontend"]
+	path = komposvision-enterprise-frontend
+	url = https://github.com/arisuryaa/komposvision-enterprise-frontend
+[submodule "KomposVision_Online_Backend"]
+	path = KomposVision_Online_Backend
+	url = https://github.com/MantaYuana/KomposVision_Online_Backend
+[submodule "komposvision_final"]
+	path = komposvision_final
+	url = https://github.com/KadekPindra/komposvision_final
